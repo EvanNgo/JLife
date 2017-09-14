@@ -1,0 +1,6 @@
+framework module Pods_ShiShoSan {
+  umbrella header "Pods-ShiShoSan-umbrella.h"
+
+  export *
+  module * { export * }
+}

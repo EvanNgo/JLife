@@ -1,0 +1,15 @@
+platform :ios, '8.0'
+use_frameworks!
+target "ShiShoSan" do
+    use_frameworks!
+    pod 'Bolts'
+    pod 'FBSDKShareKit'
+    pod 'FBSDKLoginKit'
+    pod 'FBSDKCoreKit'
+    pod 'SQLite.swift'
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Database'
+    pod 'Firebase/Storage'
+    pod "BSImagePicker", "~> 2.4"
+end
