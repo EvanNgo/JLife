@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 
 class AreaSelectorVC: UIViewController,UITableViewDelegate,UITableViewDataSource,ExpandableHeaderViewDelegate {
-//areaCell
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnStart: UIButton!
 
@@ -54,6 +53,7 @@ class AreaSelectorVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("clicked \(indexPath.section)")
         cityID = listArea[indexPath.section].cities[indexPath.row].id!
     }
     
@@ -67,6 +67,7 @@ class AreaSelectorVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func toggleSection(header: ExpandableHeaderView, section: Int) {
+        print("toggleSection \(section)")
         listArea[section].collapsed = !listArea[section].collapsed
         self.tableView.beginUpdates()
         for i in 0 ..< listArea[section].cities.count {
@@ -81,7 +82,7 @@ class AreaSelectorVC: UIViewController,UITableViewDelegate,UITableViewDataSource
             return
         }
         UserDefaults.standard.setValue(cityID, forKey: "city_id")
-        performSegue(withIdentifier: "startIndexActivity", sender: nil)
+        performSegue(withIdentifier: "locationPickedStartApp", sender: nil)
     }
     
 }

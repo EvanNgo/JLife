@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aft-Fz-1yi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aft-Fz-1yi">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -301,7 +301,7 @@
                     <connections>
                         <outlet property="btnStart" destination="fH1-Ol-5B9" id="8ex-s9-DHr"/>
                         <outlet property="tableView" destination="dAE-JS-KDR" id="Cgb-70-FVl"/>
-                        <segue destination="wNj-4k-GnY" kind="show" identifier="startIndexActivity" id="XuL-dj-Ny5"/>
+                        <segue destination="wNj-4k-GnY" kind="show" identifier="locationPickedStartApp" id="XuL-dj-Ny5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPg-yU-GQw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -344,7 +344,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="wNj-4k-GnY" kind="showDetail" identifier="startIndexActivity" id="A44-nz-8yy"/>
+                        <segue destination="wNj-4k-GnY" kind="show" identifier="loginedStartApp" id="1ta-Yi-jts"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eBb-ch-mLc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1953,8 +1953,8 @@
         <image name="icon_timer" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="1ta-Yi-jts"/>
         <segue reference="53V-5r-rV3"/>
-        <segue reference="A44-nz-8yy"/>
         <segue reference="gYb-9R-ioS"/>
     </inferredMetricsTieBreakers>
 </document>

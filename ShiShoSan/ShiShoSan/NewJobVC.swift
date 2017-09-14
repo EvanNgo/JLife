@@ -132,8 +132,6 @@ class NewJobVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataS
         rootView.alpha = 0.2
         rootView.isUserInteractionEnabled = true
         rootView.backgroundColor = UIColor.black
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,action: #selector(dismissLoadingView))
-        rootView.addGestureRecognizer(tap)
         viewLoading.frame = CGRect(x: window.frame.width/8, y: window.frame.height/2 - 20, width: window.frame.width * 3 / 4, height: 80)
         window.addSubview(viewLoading)
         viewLoading.layer.cornerRadius = 5
@@ -193,6 +191,9 @@ class NewJobVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataS
     
     func saveImageToFB(){
         var count = 0
+        for _ in 0 ..< imagesArray.count-1{
+            self.imageUrls.append("")
+        }
         for i in 1 ..< imagesArray.count{
             imagesArray[i] = imagesArray[i].resizeImage()!
             let imageName = NSUUID().uuidString
@@ -201,13 +202,13 @@ class NewJobVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataS
                 storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                     if let error = error {
                         print(error)
+                        self.dismissLoadingView()
                         return
                     }
                     if let image_url = metadata?.downloadURL()?.absoluteString {
                         DispatchQueue.main.async(execute: {
-                            self.imageUrls.append(image_url)
+                            self.imageUrls[i-1] = image_url
                             count += 1
-                            print(count)
                             if count == self.imagesArray.count-1 {
                                 print("starting public")
                                 self.publicJob()
@@ -348,19 +349,27 @@ class NewJobVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataS
 
     @IBAction func actionSubmit(_ sender: Any) {
         if tfTitle.text == "" || tvJobDetails.text == "" || tfTime.text == ""{
+            createAlert(mTitle: "Lỗi",mMessage: "Vui lòng điền đầy đủ thông tin",mButton: "Đã hiểu")
             return
         }
         if lblJobType.text == "Khác" && tfOrtherJobType.text == ""{
+            createAlert(mTitle: "Lỗi",mMessage: "Vui lòng điền đầy đủ thông tin",mButton: "Đã hiểu")
             return
         }
         if swFee.isOn && tvDetailFee.text == ""{
+            createAlert(mTitle: "Lỗi",mMessage: "Vui lòng điền đầy đủ thông tin",mButton: "Đã hiểu")
             return
         }
         showLoadingView()
         saveImageToFB()
     }
     
-    
+    func createAlert(mTitle:String,mMessage:String,mButton:String){
+        let alertController = UIAlertController(title: mTitle, message: mMessage, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: mButton, style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
+    }
     
     func getAssetThumbnail(asset: PHAsset) -> UIImage {
         let manager = PHImageManager.default()
@@ -423,7 +432,88 @@ class NewJobVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataS
         let nightTap = UITapGestureRecognizer(target: self, action:  #selector(nightClick))
         self.btnNight.addGestureRecognizer(nightTap)
         self.btnNight.isUserInteractionEnabled = true
+        
+        let N5 = UITapGestureRecognizer(target: self, action:  #selector(n5click))
+        self.btnN5.addGestureRecognizer(N5)
+        self.btnN5.isUserInteractionEnabled = true
+        let N4 = UITapGestureRecognizer(target: self, action:  #selector(n4click))
+        self.btnN4.addGestureRecognizer(N4)
+        self.btnN4.isUserInteractionEnabled = true
+        let N3 = UITapGestureRecognizer(target: self, action:  #selector(n3click))
+        self.btnN3.addGestureRecognizer(N3)
+        self.btnN3.isUserInteractionEnabled = true
+        let N2 = UITapGestureRecognizer(target: self, action:  #selector(n2click))
+        self.btnN2.addGestureRecognizer(N2)
+        self.btnN2.isUserInteractionEnabled = true
+        let N1 = UITapGestureRecognizer(target: self, action:  #selector(n1click))
+        self.btnN1.addGestureRecognizer(N1)
+        self.btnN1.isUserInteractionEnabled = true
     }
+    
+    func n5click(){
+        language = "N5"
+        handleLanguage()
+    }
+    func n4click(){
+        language = "N4"
+        handleLanguage()
+    }
+    func n3click(){
+        language = "N3"
+        handleLanguage()
+    }
+    func n2click(){
+        language = "N2"
+        handleLanguage()
+    }
+    func n1click(){
+        language = "N1"
+        handleLanguage()
+    }
+    
+    func handleLanguage(){
+        if language == "N5"{
+            btnN5.backgroundColor = UIColor.init(rgb: SELECTED_COLOR )
+            btnN4.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            btnN3.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            btnN2.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            btnN1.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            return
+        }
+        if language == "N4"{
+            btnN5.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            btnN4.backgroundColor = UIColor.init(rgb: SELECTED_COLOR )
+            btnN3.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            btnN2.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            btnN1.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            return
+        }
+        if language == "N3"{
+            btnN5.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            btnN4.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            btnN3.backgroundColor = UIColor.init(rgb: SELECTED_COLOR )
+            btnN2.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            btnN1.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            return
+        }
+        if language == "N2"{
+            btnN5.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            btnN4.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            btnN3.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            btnN2.backgroundColor = UIColor.init(rgb: SELECTED_COLOR )
+            btnN1.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            return
+        }
+        if language == "N1"{
+            btnN5.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            btnN4.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            btnN3.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            btnN2.backgroundColor = UIColor.init(rgb: UNCLICKED_COLOR )
+            btnN1.backgroundColor = UIColor.init(rgb: SELECTED_COLOR )
+            return
+        }
+    }
+    
     func morningClick(){
         if moring{
             moring = false

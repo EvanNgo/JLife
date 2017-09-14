@@ -47,7 +47,6 @@ class FlashScreenVC: UIViewController {
         }
     }
     func showSelector(){
-        
         self.performSegue(withIdentifier: "selectorVC", sender: nil)
     }
     func showIndex(){

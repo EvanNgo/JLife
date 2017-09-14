@@ -39,6 +39,7 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             UserDefaults.standard.setValue("", forKey: "profile_images_url")
             UserDefaults.standard.setValue("", forKey: "user_name")
             UserDefaults.standard.setValue("", forKey: "image_cover")
+            self.dismiss(animated: true, completion: nil)
         }
         getCurrenLogin()
     }

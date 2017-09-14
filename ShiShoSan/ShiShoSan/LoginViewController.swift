@@ -272,7 +272,7 @@ class LoginViewController: UIViewController{
                             let selectorVC = AreaSelectorVC()
                             self.present(selectorVC, animated: true, completion: nil)
                         }else{
-                            self.performSegue(withIdentifier: "startIndexActivity", sender: nil)
+                            self.performSegue(withIdentifier: "loginedStartApp", sender: nil)
                         }
                     }
                 } else {
@@ -376,7 +376,7 @@ class LoginViewController: UIViewController{
                                                     let selectorVC = AreaSelectorVC()
                                                     self.present(selectorVC, animated: true, completion: nil)
                                                 }else{
-                                                    self.performSegue(withIdentifier: "startIndexActivity", sender: nil)
+                                                    self.performSegue(withIdentifier: "loginedStartApp", sender: nil)
                                                 }
                                             }
                                             
